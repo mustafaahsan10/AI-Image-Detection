@@ -5,6 +5,7 @@ from PIL import Image
 from torchvision import transforms
 import gdown
 
+
 # Define the transformation
 transform = transforms.Compose([
     transforms.Resize((224, 224)),  # ResNet-50 expects 224x224 images
