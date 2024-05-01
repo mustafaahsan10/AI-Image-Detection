@@ -3,6 +3,7 @@ import torch
 from torch import nn
 from PIL import Image
 from torchvision import transforms
+import gdown
 
 # Define the transformation
 transform = transforms.Compose([
@@ -10,6 +11,12 @@ transform = transforms.Compose([
     transforms.ToTensor(),
     transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])  # ImageNet normalization
 ])
+
+# Download the model file from Google Drive
+file_id = '1T-tIt5VUWlSuF16gOAAnXLD7Rkz7WWaN'  # Extracted from the Google Drive link
+url = f'https://drive.google.com/uc?id={file_id}'
+output = 'ai_vs_real_model.pth'
+gdown.download(url, output, quiet=False)
 
 # Assuming model is defined or loaded elsewhere in your script
 from torchvision import models
@@ -19,7 +26,7 @@ model = models.resnet50()
 num_ftrs = model.fc.in_features
 model.fc = nn.Linear(num_ftrs, 2)  # Assuming the output size in the checkpoint is 2
 # Load the state dict into the model
-model.load_state_dict(torch.load('C:/Users/musta/Desktop/Ai_proj/ai_vs_real_model.pth', map_location=torch.device('cpu')))
+model.load_state_dict(torch.load(output, map_location=torch.device('cpu')))
 
 model.eval()
 
