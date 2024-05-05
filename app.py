@@ -5,7 +5,6 @@ from PIL import Image
 from torchvision import transforms
 import gdown
 
-
 # Define the transformation
 transform = transforms.Compose([
     transforms.Resize((224, 224)),  # ResNet-50 expects 224x224 images
@@ -13,10 +12,10 @@ transform = transforms.Compose([
     transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])  # ImageNet normalization
 ])
 
-# Download the model file from Google Drive
-file_id = '1T-tIt5VUWlSuF16gOAAnXLD7Rkz7WWaN'  # Extracted from the Google Drive link
+# Download the model file from Google Drive with the new file ID
+file_id = '1ojGB5QO9Rl-x_RBpG_I42T2LG3GyloWt'  # New file ID
 url = f'https://drive.google.com/uc?id={file_id}'
-output = 'ai_vs_real_model.pth'
+output = 'resnet_new.pth'
 gdown.download(url, output, quiet=False)
 
 # Assuming model is defined or loaded elsewhere in your script
